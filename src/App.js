@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import './App.css';
 
-import Modal from './component/Modal'
+import Modal from './component/modal/Modal'
 import { IconContext } from "react-icons";
 import { MdDehaze, MdPhotoCamera } from "react-icons/md";
 

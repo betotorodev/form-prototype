@@ -79,6 +79,29 @@ form button {
   border-radius: 3px;
 }
 
+article {
+  margin: 50px 0;
+}
+
+.checkbox {
+  width: 18px;
+  margin: 0 15px 0 0;
+}
+
+.checkbox-label {
+  display: inline-block;
+  margin: 0;
+}
+
+.checkbox-label a {
+  text-decoration: underline;
+}
+
+.checkbox-container div {
+  display: flex;
+  align-items: center;
+}
+
 [disabled] {
   opacity: 0.5;
 }
