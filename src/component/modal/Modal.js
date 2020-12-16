@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState } from 'react'
 import ReactDOM from 'react-dom'
 
 //components
@@ -9,6 +9,12 @@ import { SecondModal } from './components/secondModal'
 import './modal.css'
 
 const Modal = ({ toggle, onClick }) => {
+  const [nextModal, setNextModal] = useState(1)
+
+  const handleClickModal = (e) => {
+    e.preventDefault()
+    setNextModal(2)
+  }
   return ReactDOM.createPortal(
     <>
       {
@@ -21,8 +27,12 @@ const Modal = ({ toggle, onClick }) => {
                 <h2>Cliente nuevo</h2>
                 <p>Pronto llegará Coca-Cola a tu negocio</p>
               </div>
-              <SecondModal />
-              <button disabled>SIGUIENTE</button>
+              {
+                nextModal === 1
+                  ? <FirstModal />
+                  : <SecondModal />
+              }
+              <button onClick={handleClickModal}>SIGUIENTE</button>
             </form>
           </div>
         </div>
