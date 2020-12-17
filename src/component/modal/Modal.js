@@ -8,21 +8,23 @@ import { SecondModal } from './components/secondModal'
 //css
 import './modal.css'
 
-const Modal = ({ toggle, onClick }) => {
-  const [nextModal, setNextModal] = useState(1)
-  const [disabled, setDisabled] = useState(true)
+const Modal = ({ toggle, onClick, modal }) => {
+  const [nextModal, setNextModal] = useState(modal)
 
   const handleClickModal = (e) => {
     e.preventDefault()
     setNextModal(2)
-    console.log('object')
   }
-  const getItem = () => window.localStorage.getItem('isNotDisabled')
+
+  const handleSecondModal = (e) => {
+    e.preventDefault()
+    setNextModal(1)
+    onClick()
+  }
 
   useEffect(() => {
-    if(getItem() !== null) window.localStorage.removeItem('isNotDisabled')
-    setDisabled(getItem() === null ? true : false)
-  }, [])
+  console.log("🚀 ~ file: Modal.js ~ line 13 ~ Modal ~ nextModal", nextModal)
+  }, [nextModal])
 
   return ReactDOM.createPortal(
     <>
@@ -31,7 +33,7 @@ const Modal = ({ toggle, onClick }) => {
         <div className="Modal">
           <div className="Modal__container">
             <button onClick={onClick} className="Modal__close-button">X</button>
-            <form action="">
+            <form>
               <div className="form-title">
                 <h2>Cliente nuevo</h2>
                 <p>Pronto llegará Coca-Cola a tu negocio</p>
@@ -39,7 +41,7 @@ const Modal = ({ toggle, onClick }) => {
               {
                 nextModal === 1
                   ? <FirstModal handleClickModal={handleClickModal} />
-                  : <SecondModal handleClickModal={handleClickModal} />
+                  : <SecondModal conClick={onClick} handleClickModal={handleSecondModal} />
               }
             </form>
           </div>

@@ -9,10 +9,12 @@ const color = '#169196'
 
 function App() {
   let key = 0
+  const [modal, setModal] = useState(1)
   const [toggle, setToggle] = useState(false)
   const array = Array(8).fill('')
   const handleClick = () => {
     setToggle(!toggle)
+    setModal(1)
   }
   return (
     <>
@@ -44,7 +46,7 @@ function App() {
             <h1 className="color-green">Bienvenido a Coca Cola</h1>
             <p className="color-green">Si quieres ser cliente Registrate aquí y te asesoramos</p>
             <button onClick={handleClick} className="background-color">CLIENTE NUEVO</button>
-            <Modal toggle={toggle} onClick={handleClick} />
+            <Modal modal={modal} toggle={toggle} onClick={handleClick} />
           </div>
         </section>
       </main>

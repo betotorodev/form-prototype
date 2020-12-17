@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import PlaceAutocomplete, { geocodeByAddress, getLating } from 'react-places-autocomplete'
 
-export const SecondModal = ({ handleClickModal }) => {
+export const SecondModal = ({ handleClickModal, onClick }) => {
   const [address, setAddres] = useState('')
   const [choice, setChoice] = useState('')
   const [barrio, setBarrio] = useState('')
@@ -70,7 +70,7 @@ export const SecondModal = ({ handleClickModal }) => {
           <label className="checkbox-label" for="politicas">Acepto <a>Política de Tratamiento de Datos.</a></label>
         </div>
       </article>
-      <button disabled={disabled} onClick={handleClickModal}>SIGUIENTE</button>
+      <button disabled={disabled} onClick={handleClickModal}>ENVIAR</button>
     </>
   )
 }
