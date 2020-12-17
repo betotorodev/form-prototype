@@ -13,7 +13,7 @@
 
 .Modal__container {
   position: relative;
-  top: 15%;
+  bottom: -11%;
   background-color: #ffffff;
   padding: 1rem;
   width: 628px;
@@ -30,8 +30,12 @@
 }
 
 form {
-  max-width: 310px;
+  max-width: 320px;
   margin: 0 auto;
+}
+
+.document {
+  width: 50%;
 }
 
 .form-title {

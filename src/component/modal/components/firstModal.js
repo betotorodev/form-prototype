@@ -8,7 +8,7 @@ export const FirstModal = () => {
       <label className="label">Apellido*</label>
       <input className="input" type="text"/>
       <section>
-        <div>
+        <div className="document">
           <label className="label">Tipo de documento*</label>
           <select name="Cédula">
             <option>Cédula</option>
@@ -16,7 +16,7 @@ export const FirstModal = () => {
             <option>Pasaporte de extranjería</option>
           </select>
         </div>
-        <div>
+        <div className="document">
           <label className="label">Número de documento*</label>
           <input className="input" type="text"/>
         </div>
