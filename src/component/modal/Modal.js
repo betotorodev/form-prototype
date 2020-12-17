@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 
 //components
@@ -10,11 +10,20 @@ import './modal.css'
 
 const Modal = ({ toggle, onClick }) => {
   const [nextModal, setNextModal] = useState(1)
+  const [disabled, setDisabled] = useState(true)
 
   const handleClickModal = (e) => {
     e.preventDefault()
     setNextModal(2)
+    console.log('object')
   }
+  const getItem = () => window.localStorage.getItem('isNotDisabled')
+
+  useEffect(() => {
+    if(getItem() !== null) window.localStorage.removeItem('isNotDisabled')
+    setDisabled(getItem() === null ? true : false)
+  }, [])
+
   return ReactDOM.createPortal(
     <>
       {
@@ -29,10 +38,9 @@ const Modal = ({ toggle, onClick }) => {
               </div>
               {
                 nextModal === 1
-                  ? <FirstModal />
-                  : <SecondModal />
+                  ? <FirstModal handleClickModal={handleClickModal} />
+                  : <SecondModal handleClickModal={handleClickModal} />
               }
-              <button onClick={handleClickModal}>SIGUIENTE</button>
             </form>
           </div>
         </div>
