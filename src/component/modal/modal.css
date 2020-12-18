@@ -1,3 +1,4 @@
+/* modal general*/
 .Modal {
   position: fixed;
   top: 0;
@@ -16,7 +17,8 @@
   bottom: -11%;
   background-color: #ffffff;
   padding: 1rem;
-  width: 628px;
+  max-width: 628px;
+  width: 100%;
   height: 631px;
 }
 
@@ -36,6 +38,21 @@
 .Modal__close-button {
   right: 3rem;
 }
+
+@media screen and (max-width: 414px) {
+  .Modal__container {
+    position: absolute;
+    bottom: -2rem;
+  }
+  .Modal__back-button {
+    left: 1rem;
+  }
+  .Modal__close-button {
+    right: 1rem;
+  }
+}
+
+/* form */
 
 form {
   max-width: 320px;
