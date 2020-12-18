@@ -9,7 +9,8 @@ import { SecondModal } from './components/secondModal'
 import './modal.css'
 
 const Modal = ({ toggle, onClick, modal }) => {
-  const [nextModal, setNextModal] = useState(modal)
+  // const [nextModal, setNextModal] = useState(modal)
+  const [nextModal, setNextModal] = useState(2)
 
   const handleClickModal = (e) => {
     e.preventDefault()

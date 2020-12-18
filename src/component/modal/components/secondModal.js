@@ -1,5 +1,6 @@
+/*global google*/
 import React, { useState, useEffect } from 'react'
-import PlaceAutocomplete, { geocodeByAddress, getLating } from 'react-places-autocomplete'
+import PlaceAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 
 export const SecondModal = ({ handleClickModal, onClick }) => {
   const [address, setAddres] = useState('')
@@ -11,6 +12,12 @@ export const SecondModal = ({ handleClickModal, onClick }) => {
   const handleBarrio = e => setBarrio(e.target.value)
   const handleOptionalDirection = e => setOptionalDirection(e.target.value)
 
+  const searchOptions = {
+    location:  new google.maps.LatLng(4.570868, -74.297333),
+    radius: 200,
+    types: ['address']
+  }
+
 
   useEffect(() => {
     if(!!barrio && !!optionalDirection && !!choice) {
@@ -20,8 +27,7 @@ export const SecondModal = ({ handleClickModal, onClick }) => {
   }, [barrio, optionalDirection, choice])
 
   const handleSelect = async (value) => {
-    const results = await geocodeByAddress(value)
-    setChoice(results[0].formatted_address)
+    setAddres(value)
   }
 
   return (
@@ -29,9 +35,11 @@ export const SecondModal = ({ handleClickModal, onClick }) => {
       <div className="address-container">
         <label>Dirección*</label>
         <PlaceAutocomplete
-          value={!choice ? address : choice}
-          onChange={setAddres}
+          // value={!choice ? address : choice}
+          value={address}
+          onChange={value => setAddres(value)}
           onSelect={handleSelect}
+          searchOptions={searchOptions}
         >
           {({getInputProps, suggestions, getSuggestionItemProps, loading}) => {
               return (
