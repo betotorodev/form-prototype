@@ -99,7 +99,7 @@ function App() {
               <MdPhotoCamera />
             </IconContext.Provider>
           </section>
-          <section>
+          <section className="whatsapp-description">
             <h1 className="color-green">TAMBIÉN PUEDES REGISTRARTE A TRAVÉS DE WHATSAPP</h1>
             <button className="background-color">ENVIAR</button>
           </section>

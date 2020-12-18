@@ -42,13 +42,14 @@ header div {
 /* hero */
 
 main {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   width: 100%;
   height: 413px;
 }
 
 .hero-image {
-  width: 50%;
+  width: 100%;
   height: 100%;
 }
 
@@ -64,7 +65,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50%;
+  width: 100%;
   height: 100%;
 }
 
@@ -92,11 +93,13 @@ main {
 
 .description {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   padding: 124px 0;
 }
 
 .description div {
+  flex: 1 1 150px;
   max-width: 235px;
   width: 100%;
   margin: 0 60px;
@@ -120,33 +123,43 @@ main {
 
 .products ul {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
 .products ul li {
+  flex: 0 1 150px;
   margin: 0 20px;
 }
 
 /* whatsapp */
 
 .whatsapp {
+  display: flex;
+  align-items: center;
   width: 100%;
   height: 368px;
-  padding: 50px 100px;
+  /* padding: 50px 100px; */
   background-color: var(--grey-color);
 }
 
-.whatsapp-flex {
-  display: flex;
-  align-items: center;
+.whatsapp-image {
+  align-self: center;
+  justify-self: center;
+}
+@media screen and (max-width: 816px) {
+  .whatsapp-description {
+    text-align: center;
+  }
 }
 
-.whatsapp-image {
-  margin-right: 50px;
+.whatsapp-flex {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 }
 
 .whatsapp div section h1 {
-  font-size: 30px;
+  font-size: 1.9rem;
 }
 
 .whatsapp section button {
