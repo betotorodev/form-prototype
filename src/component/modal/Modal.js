@@ -16,10 +16,15 @@ const Modal = ({ toggle, onClick, modal }) => {
   const handleClickModal = (e) => {
     e.preventDefault()
     setNextModal(2)
-    console.log(nextModal)
   }
 
   const handleSecondModal = (e) => {
+    e.preventDefault()
+    setNextModal(1)
+    onClick()
+  }
+
+  const handleCloseClick = (e) => {
     e.preventDefault()
     setNextModal(1)
     onClick()
@@ -43,7 +48,7 @@ const Modal = ({ toggle, onClick, modal }) => {
                   </IconContext.Provider>
                 </button>
             }
-            <button onClick={onClick} className="btn Modal__close-button">
+            <button onClick={handleCloseClick} className="btn Modal__close-button">
               <IconContext.Provider value={{ size: "22px", color: "#169196" }}>
                 <MdClear />
               </IconContext.Provider>
