@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
+import { IconContext } from "react-icons"
+import { MdKeyboardBackspace, MdClear } from "react-icons/md"
 
 //components
 import { FirstModal } from './components/firstModal'
@@ -9,12 +11,12 @@ import { SecondModal } from './components/secondModal'
 import './modal.css'
 
 const Modal = ({ toggle, onClick, modal }) => {
-  // const [nextModal, setNextModal] = useState(modal)
-  const [nextModal, setNextModal] = useState(2)
+  const [nextModal, setNextModal] = useState(1)
 
   const handleClickModal = (e) => {
     e.preventDefault()
     setNextModal(2)
+    console.log(nextModal)
   }
 
   const handleSecondModal = (e) => {
@@ -24,7 +26,7 @@ const Modal = ({ toggle, onClick, modal }) => {
   }
 
   useEffect(() => {
-  console.log("🚀 ~ file: Modal.js ~ line 13 ~ Modal ~ nextModal", nextModal)
+    console.log(nextModal)
   }, [nextModal])
 
   return ReactDOM.createPortal(
@@ -33,7 +35,19 @@ const Modal = ({ toggle, onClick, modal }) => {
         toggle ?
         <div className="Modal">
           <div className="Modal__container">
-            <button onClick={onClick} className="Modal__close-button">X</button>
+            {
+              nextModal !== 1 &&
+                <button className="btn Modal__back-button" onClick={() => setNextModal(1)}>
+                  <IconContext.Provider value={{ size: "22px", color: "#169196" }}>
+                    <MdKeyboardBackspace />
+                  </IconContext.Provider>
+                </button>
+            }
+            <button onClick={onClick} className="btn Modal__close-button">
+              <IconContext.Provider value={{ size: "22px", color: "#169196" }}>
+                <MdClear />
+              </IconContext.Provider>
+            </button>
             <form>
               <div className="form-title">
                 <h2>Cliente nuevo</h2>
@@ -42,7 +56,7 @@ const Modal = ({ toggle, onClick, modal }) => {
               {
                 nextModal === 1
                   ? <FirstModal handleClickModal={handleClickModal} />
-                  : <SecondModal conClick={onClick} handleClickModal={handleSecondModal} />
+                  : <SecondModal handleClickSecondModal={handleSecondModal} />
               }
             </form>
           </div>

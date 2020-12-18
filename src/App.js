@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react'
 import './App.css';
 
 import Modal from './component/modal/Modal'
-import { IconContext } from "react-icons";
-import { MdDehaze, MdPhotoCamera } from "react-icons/md";
+import { IconContext } from "react-icons"
+import { MdDehaze, MdPhotoCamera } from "react-icons/md"
 
 const color = '#169196'
 
@@ -14,7 +14,7 @@ function App() {
   const array = Array(8).fill('')
   const handleClick = () => {
     setToggle(!toggle)
-    setModal(1)
+    setModal(!modal)
   }
   return (
     <>

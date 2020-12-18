@@ -20,13 +20,21 @@
   height: 631px;
 }
 
-.Modal__close-button {
+.btn {
   position: absolute;
-  top: 0;
-  right: 0;
-  border: 0;
-  background-color: #f5f5f5;
-  padding: 0.5rem 1rem;
+  top: 2rem;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.Modal__back-button {
+  left: 3rem;
+}
+
+.Modal__close-button {
+  right: 3rem;
 }
 
 form {
