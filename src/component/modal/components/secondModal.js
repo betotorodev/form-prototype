@@ -4,7 +4,6 @@ import PlaceAutocomplete from 'react-places-autocomplete'
 
 export const SecondModal = ({ handleClickSecondModal }) => {
   const [address, setAddres] = useState('')
-  const [choice, setChoice] = useState('')
   const [barrio, setBarrio] = useState('')
   const [optionalDirection, setOptionalDirection] = useState('')
   const [disabled, setDisabled] = useState(true)
@@ -20,11 +19,12 @@ export const SecondModal = ({ handleClickSecondModal }) => {
 
 
   useEffect(() => {
-    if(!!barrio && !!optionalDirection && !!choice) {
+    if(!!barrio && !!optionalDirection && !!address) {
       setDisabled(false)
+      console.log('si!!')
     }
     else setDisabled(true)
-  }, [barrio, optionalDirection, choice])
+  }, [barrio, optionalDirection, address])
 
   const handleSelect = async (value) => {
     setAddres(value)
