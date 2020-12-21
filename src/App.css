@@ -17,6 +17,8 @@
   width: 100%;
 }
 
+/* header */
+
 header {
   display: flex;
   align-items: center;
@@ -28,6 +30,16 @@ header {
 
 .header-flex {
   justify-content: flex-start;
+}
+
+.header-flex ul {
+  display: flex;
+}
+
+.header-flex ul li {
+  margin: 0 15px;
+  font-weight: 500;
+  cursor: pointer;
 }
 
 header div {
@@ -71,6 +83,10 @@ main {
 
 .hero-action div {
   width: 288px;
+}
+
+.hero-action div h2 {
+  text-align: center;
 }
 
 .hero-action div p {

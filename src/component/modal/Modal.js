@@ -6,12 +6,13 @@ import { MdKeyboardBackspace, MdClear } from "react-icons/md"
 //components
 import { FirstModal } from './components/firstModal'
 import { SecondModal } from './components/secondModal'
+import { ThirdModal } from './components/ThirdModal'
 
 //css
 import './modal.css'
 
-const Modal = ({ toggle, onClick, modal }) => {
-  const [nextModal, setNextModal] = useState(1)
+const Modal = ({ toggle, onClick, option }) => {
+  const [nextModal, setNextModal] = useState(2)
 
   const handleClickModal = (e) => {
     e.preventDefault()
@@ -24,15 +25,17 @@ const Modal = ({ toggle, onClick, modal }) => {
     onClick()
   }
 
-  const handleCloseClick = (e) => {
+  const handleThirdModal = (e) => {
     e.preventDefault()
     setNextModal(1)
     onClick()
   }
 
-  useEffect(() => {
-    console.log(nextModal)
-  }, [nextModal])
+  const handleCloseClick = (e) => {
+    e.preventDefault()
+    setNextModal(1)
+    onClick()
+  }
 
   return ReactDOM.createPortal(
     <>
@@ -59,9 +62,17 @@ const Modal = ({ toggle, onClick, modal }) => {
                 <p>Pronto llegará Coca-Cola a tu negocio</p>
               </div>
               {
-                nextModal === 1
-                  ? <FirstModal handleClickModal={handleClickModal} />
-                  : <SecondModal handleClickSecondModal={handleSecondModal} />
+                option === 1
+                  ? (
+                    nextModal === 1
+                      ? <FirstModal handleClickModal={handleClickModal} />
+                      : <SecondModal handleClickSecondModal={handleSecondModal} />
+                  )
+                  : (
+                    nextModal === 1
+                      ? <FirstModal handleClickModal={handleClickModal} />
+                      : <ThirdModal handleThirdModal={handleThirdModal} />
+                  )
               }
             </form>
           </div>

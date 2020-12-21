@@ -10,6 +10,7 @@ const color = '#169196'
 function App() {
   let key = 0
   const [toggle, setToggle] = useState(false)
+  const [option, setOption] = useState(1)
   const array = Array(8).fill('')
   const handleClick = () => {
     setToggle(!toggle)
@@ -32,6 +33,10 @@ function App() {
               <MdPhotoCamera />
             </IconContext.Provider>
           </div>
+        <ul className="color-green">
+          <li onClick={() => setOption(1)}>Opción 1</li>
+          <li onClick={() => setOption(2)}>Opción 2</li>
+        </ul>
         </div>
       </header>
 
@@ -45,10 +50,11 @@ function App() {
         </section>
         <section className="hero-action">
           <div>
+            <h2>{option === 1 ? 'Opción 1' : 'Opción 2'}</h2>
             <h1 className="color-green">Bienvenido a Coca Cola</h1>
             <p className="color-green">Si quieres ser cliente Registrate aquí y te asesoramos</p>
             <button onClick={handleClick} className="background-color">CLIENTE NUEVO</button>
-            <Modal toggle={toggle} onClick={handleClick} />
+            <Modal option={option} toggle={toggle} onClick={handleClick} />
           </div>
         </section>
       </main>
