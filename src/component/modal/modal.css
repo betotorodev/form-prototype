@@ -112,6 +112,11 @@ form button {
 
 .address-container {
   position: relative;
+  display: flex;
+}
+
+.inputs-container {
+  display: block;
 }
 
 .render-suggestion {
@@ -119,10 +124,24 @@ form button {
   width: 100%;
   margin-top: -16px;
   color: #169196;
+  z-index: 1;
 }
 
 .render-suggestion p {
   display: block;
+}
+
+.inputs-container {
+  width: 90%;
+}
+
+.map-button {
+  align-self: flex-end;
+  width: 10%;
+  height: 37px;
+  margin: 0 0 15px 5px;
+  outline: none;
+  cursor: pointer;
 }
 
 .border {

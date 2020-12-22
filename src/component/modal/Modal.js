@@ -6,7 +6,6 @@ import { MdKeyboardBackspace, MdClear } from "react-icons/md"
 //components
 import { FirstModal } from './components/firstModal'
 import { SecondModal } from './components/secondModal'
-import { ThirdModal } from './components/ThirdModal'
 
 //css
 import './modal.css'
@@ -20,12 +19,6 @@ const Modal = ({ toggle, onClick, option }) => {
   }
 
   const handleSecondModal = (e) => {
-    e.preventDefault()
-    setNextModal(1)
-    onClick()
-  }
-
-  const handleThirdModal = (e) => {
     e.preventDefault()
     setNextModal(1)
     onClick()
@@ -66,12 +59,12 @@ const Modal = ({ toggle, onClick, option }) => {
                   ? (
                     nextModal === 1
                       ? <FirstModal handleClickModal={handleClickModal} />
-                      : <SecondModal handleClickSecondModal={handleSecondModal} />
+                      : <SecondModal option={option} handleClickSecondModal={handleSecondModal} />
                   )
                   : (
                     nextModal === 1
                       ? <FirstModal handleClickModal={handleClickModal} />
-                      : <ThirdModal handleThirdModal={handleThirdModal} />
+                      : <SecondModal option={option} handleClickModal={handleClickModal} />
                   )
               }
             </form>
