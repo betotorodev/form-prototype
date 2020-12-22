@@ -1,9 +1,10 @@
 /*global google*/
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 
-export const Map = ({ placeName, hola, coordinates }) => {
-  const googleMapRef = useRef();
-  let googleMap;
+export const Map = ({ placeName, reverseGeocode, coordinates }) => {
+  const googleMapRef = useRef()
+  const [address, setAdress] = useState('')
+  let googleMap
   let latAndLng = {
     lat: 0,
     lng: 0
@@ -23,10 +24,8 @@ export const Map = ({ placeName, hola, coordinates }) => {
   const getLatLng = (position) => {
     let marker
     let { lat, lng } = position
-    // let lat, lng, placeId;
-    new window.google.maps.Geocoder().geocode(
-      { address: `${placeName}` },
-      function (results, status) {
+    new window.google.maps.Geocoder().geocode({ location: {lat, lng} }, (results, status) => {
+        setAdress(results[0].formatted_address)
         if (status === window.google.maps.GeocoderStatus.OK) {
 
           // placeId = results[0].place_id;
@@ -40,7 +39,7 @@ export const Map = ({ placeName, hola, coordinates }) => {
             map: googleMap,
             draggable: true,
             animation: window.google.maps.Animation.DROP,
-            title: `${placeName}`,
+            // title: `${placeName}`,
           })
 
           marker.addListener('click', () => {
@@ -48,7 +47,9 @@ export const Map = ({ placeName, hola, coordinates }) => {
           })
           marker.addListener( 'dragend', (event) => {
             const { latLng } = event
-            console.log(latLng.lat(), latLng.lng())
+            latAndLng.lat = latLng.lat()
+            latAndLng.lng = latLng.lng()
+            reverseGeocode(latAndLng)
           })
         } else {
           console.log("Geocode was not successful for the following reason: " + status)
@@ -59,18 +60,9 @@ export const Map = ({ placeName, hola, coordinates }) => {
 
   const initMapa = (coordinates) => {
     navigator.geolocation.getCurrentPosition((position) => {
-      const UserPosition = coordinates.lat === 0 ? position : coordinates
-      let geocoding ='https://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude + '&sensor=false';
-      try {
-        fetch(geocoding)
-          .then((object) => console.log(object))
-          .catch((error) => console.log(error))
-      } catch (error) {
-        console.log(error)
-      }
+      let { latitude, longitude } = position.coords
       
       if(coordinates.lat === 0 && coordinates.lng === 0) {
-        let { latitude, longitude } = position.coords
         latAndLng.lat = latitude
         latAndLng.lng = longitude
         getLatLng(latAndLng)
@@ -81,6 +73,7 @@ export const Map = ({ placeName, hola, coordinates }) => {
       }
     })
   }
+
   useEffect(() => {
   initMapa(coordinates)
   }, [coordinates])

@@ -25,7 +25,12 @@ export const InputGoogleMaps = ({ option }) => {
       .catch(error => console.error(error))
   }
 
-  const handleHola = (value) => console.log(value)
+  const handleReverseGeocode = (coordinates) => {
+    const { lat, lng } = coordinates
+    new window.google.maps.Geocoder().geocode({ location: {lat, lng}}, (results, status) => {
+      setAddres(results[0].formatted_address)
+    })
+  }
   const handleSelect = async (value) => setAddres(value)
 
   return (
@@ -63,13 +68,16 @@ export const InputGoogleMaps = ({ option }) => {
           </PlaceAutocomplete>
           
         </section>
-        <button onClick={handleClickMap} className="map-button">
-          <IconContext.Provider value={{ size: "22px", color: '#fff' }}>
-            <MdSearch />
-          </IconContext.Provider>
-        </button>
+        {
+          option === 2 &&
+          <button onClick={handleClickMap} className="map-button">
+            <IconContext.Provider value={{ size: "22px", color: '#fff' }}>
+              <MdSearch />
+            </IconContext.Provider>
+          </button>
+        }
       </div>
-      {option === 2 && <Map coordinates={coordinates} hola={handleHola} placeName="Bogotá, Colombia" />}
+      {option === 2 && <Map coordinates={coordinates} reverseGeocode={handleReverseGeocode} />}
     </>
   )
 }
