@@ -6,12 +6,13 @@ import { MdKeyboardBackspace, MdClear } from "react-icons/md"
 //components
 import { FirstModal } from './components/firstModal'
 import { SecondModal } from './components/secondModal'
+import { Success } from './components/success'
 
 //css
 import './modal.css'
 
 const Modal = ({ toggle, onClick, option }) => {
-  const [nextModal, setNextModal] = useState(2)
+  const [nextModal, setNextModal] = useState(3)
 
   const handleClickModal = (e) => {
     e.preventDefault()
@@ -20,8 +21,8 @@ const Modal = ({ toggle, onClick, option }) => {
 
   const handleSecondModal = (e) => {
     e.preventDefault()
-    setNextModal(1)
-    onClick()
+    setNextModal(3)
+    // onClick()
   }
 
   const handleCloseClick = (e) => {
@@ -55,17 +56,13 @@ const Modal = ({ toggle, onClick, option }) => {
                 <p>Pronto llegará Coca-Cola a tu negocio</p>
               </div>
               {
-                option === 1
-                  ? (
-                    nextModal === 1
-                      ? <FirstModal handleClickModal={handleClickModal} />
-                      : <SecondModal option={option} handleClickSecondModal={handleSecondModal} />
-                  )
-                  : (
-                    nextModal === 1
-                      ? <FirstModal handleClickModal={handleClickModal} />
-                      : <SecondModal option={option} handleClickModal={handleClickModal} />
-                  )
+                nextModal === 1 && <FirstModal handleClickModal={handleClickModal} />
+              }
+              {
+                nextModal === 2 && <SecondModal option={option} handleClickSecondModal={handleSecondModal} />
+              }
+              {
+                nextModal === 3 && <Success />
               }
             </form>
           </div>

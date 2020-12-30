@@ -3,25 +3,34 @@ import { InputGoogleMaps } from '../../../utils/InputGoogleMaps'
 
 export const SecondModal = ({ handleClickSecondModal, option }) => {
   const [barrio, setBarrio] = useState('')
+  const [address, setAddress] = useState('')
   const [optionalDirection, setOptionalDirection] = useState('')
   const [disabled, setDisabled] = useState(true)
 
   const handleBarrio = e => setBarrio(e.target.value)
   const handleOptionalDirection = e => setOptionalDirection(e.target.value)
+  const handleAddressInput = e => {setAddress(e)}
 
   useEffect(() => {
-    if(!!barrio && !!optionalDirection) {
+    if(!!barrio && !!optionalDirection && !!address) {
       setDisabled(false)
     }
     else setDisabled(true)
   }, [barrio, optionalDirection])
+
+  useEffect(() => {
+    if(!!address) {
+      setDisabled(false)
+    }
+    else setDisabled(true)
+  }, [address])
 
   return (
     <>
       {
         option === 1
           ? <>
-              <InputGoogleMaps option={option}/>
+              <InputGoogleMaps addressInput={handleAddressInput} option={option}/>
               <label htmlFor="barrio">{'Barrio (opcional)'}*</label>
               <input id="barrio" onChange={handleBarrio} type="text"/>
               <label htmlFor="optionalDirection">{'Complemento Dirección (opcional)'}*</label>
@@ -37,7 +46,7 @@ export const SecondModal = ({ handleClickSecondModal, option }) => {
                 </div>
               </article>
             </>
-          : <InputGoogleMaps option={option} />
+          : <InputGoogleMaps addressInput={handleAddressInput} option={option} />
       }
       <button disabled={disabled} onClick={handleClickSecondModal}>ENVIAR</button>
     </>

@@ -34,8 +34,8 @@ function App() {
             </IconContext.Provider>
           </div>
         <ul className="color-green">
-          <li onClick={() => setOption(1)}>Opción 1</li>
-          <li onClick={() => setOption(2)}>Opción 2</li>
+          <li className={option === 1 && 'outlined'} onClick={() => setOption(1)}>Opción 1</li>
+          <li className={option === 2 && 'outlined'} onClick={() => setOption(2)}>Opción 2</li>
         </ul>
         </div>
       </header>

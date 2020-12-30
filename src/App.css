@@ -51,6 +51,10 @@ header div {
   margin-left: 23px;
 }
 
+.outlined {
+  text-decoration: underline;
+}
+
 /* hero */
 
 main {

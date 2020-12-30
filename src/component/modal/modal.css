@@ -6,7 +6,6 @@
   bottom: 0;
   right: 0;
   background-color: rgba(0, 0, 0, 0.5);
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,11 +14,11 @@
 .Modal__container {
   position: relative;
   bottom: -11%;
-  background-color: #ffffff;
-  padding: 1rem;
   max-width: 628px;
   width: 100%;
-  height: 631px;
+  height: 68%;
+  padding: 1rem;
+  background-color: #ffffff;
 }
 
 .btn {
@@ -42,7 +41,8 @@
 @media screen and (max-width: 414px) {
   .Modal__container {
     position: absolute;
-    bottom: -2rem;
+    top: 32px;
+    height: 100%;
   }
   .Modal__back-button {
     left: 1rem;
@@ -115,8 +115,14 @@ form button {
   display: flex;
 }
 
-.inputs-container {
+.inputs-container__second {
   display: block;
+  width: 90%;
+}
+
+.inputs-container__first {
+  display: block;
+  width: 100%;
 }
 
 .render-suggestion {
@@ -129,10 +135,6 @@ form button {
 
 .render-suggestion p {
   display: block;
-}
-
-.inputs-container {
-  width: 90%;
 }
 
 .map-button {
@@ -171,11 +173,14 @@ article {
   align-items: center;
 }
 
-/* thirdmodal */
-
 #google-map {
   width: 100%;
   height: 300px;
+}
+/* thirdmodal */
+.succes-container {
+  text-align: center;
+  color: #169196;
 }
 
 [disabled] {

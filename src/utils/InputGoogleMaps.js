@@ -1,12 +1,12 @@
 /*global google*/
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PlaceAutocomplete, { geocodeByAddress } from 'react-places-autocomplete'
 import { IconContext } from "react-icons"
 import { MdSearch } from "react-icons/md";
 
 import { Map } from './Map'
 
-export const InputGoogleMaps = ({ option }) => {
+export const InputGoogleMaps = ({ option, addressInput }) => {
   const [address, setAddres] = useState('')
   const [coordinates, setCoordinates] = useState({lat: 0, lng: 0})
   const searchOptions = {
@@ -33,10 +33,14 @@ export const InputGoogleMaps = ({ option }) => {
   }
   const handleSelect = async (value) => setAddres(value)
 
+  useEffect(() => {
+    addressInput(address)
+  }, [address])
+
   return (
     <>
       <div className="address-container">
-        <section className="inputs-container">
+        <section className={option === 2 ? "inputs-container__second" : 'inputs-container__first'}>
           <label htmlFor="directions">Dirección*</label>
           <PlaceAutocomplete
             value={address}
