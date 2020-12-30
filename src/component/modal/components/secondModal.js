@@ -18,17 +18,23 @@ export const SecondModal = ({ handleClickSecondModal, option }) => {
   const handleChange2 = () => setCheckbox2(!checkbox2)
 
   useEffect(() => {
-    console.log(checkbox1, checkbox2)
+    console.log(checkbox1, checkbox2, address, disabled)
     if(!!address && checkbox1 && checkbox2) {
       setDisabled(false)
+      console.log('hola', disabled)
     }
     else setDisabled(true)
-
-    option === 2 &&
-      !!address
-        ? setDisabled(false)
-        : setDisabled(true)
   }, [barrio, optionalDirection, checkbox1, checkbox2, address])
+
+  useEffect(() => {
+    if(option === 2) {
+      if(!!address) {
+        setDisabled(false)
+      }
+    } else {
+      setDisabled(true)
+    }
+  }, [address])
 
   return (
     <>
