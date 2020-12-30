@@ -1,7 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { InputGoogleMaps } from '../../../utils/InputGoogleMaps'
 
 export const SecondModal = ({ handleClickSecondModal, option }) => {
+  const termsAndConditions = useRef()
+  const policies = useRef()
+  const [checkbox1, setCheckbox1] = useState(false)
+  const [checkbox2, setCheckbox2] = useState(false)
   const [barrio, setBarrio] = useState('')
   const [address, setAddress] = useState('')
   const [optionalDirection, setOptionalDirection] = useState('')
@@ -10,20 +14,21 @@ export const SecondModal = ({ handleClickSecondModal, option }) => {
   const handleBarrio = e => setBarrio(e.target.value)
   const handleOptionalDirection = e => setOptionalDirection(e.target.value)
   const handleAddressInput = e => {setAddress(e)}
+  const handleChange1 = () => setCheckbox1(!checkbox1)
+  const handleChange2 = () => setCheckbox2(!checkbox2)
 
   useEffect(() => {
-    if(!!barrio && !!optionalDirection && !!address) {
+    console.log(checkbox1, checkbox2)
+    if(!!address && checkbox1 && checkbox2) {
       setDisabled(false)
     }
     else setDisabled(true)
-  }, [barrio, optionalDirection])
 
-  useEffect(() => {
-    if(!!address) {
-      setDisabled(false)
-    }
-    else setDisabled(true)
-  }, [address])
+    option === 2 &&
+      !!address
+        ? setDisabled(false)
+        : setDisabled(true)
+  }, [barrio, optionalDirection, checkbox1, checkbox2, address])
 
   return (
     <>
@@ -37,11 +42,11 @@ export const SecondModal = ({ handleClickSecondModal, option }) => {
               <input id="optionalDirection" onChange={handleOptionalDirection} type="text"/>
               <article className="checkbox-container">
                 <div>
-                  <input className="checkbox" id="terminos" type="checkbox"/>
+                  <input onChange={handleChange1} ref={termsAndConditions} className="checkbox" id="terminos" type="checkbox"/>
                   <label className="checkbox-label" for="terminos">Acepto Términos, Condiciones</label>
                 </div>
                 <div>
-                  <input className="checkbox" id="politicas" type="checkbox"/>
+                  <input onChange={handleChange2} ref={policies} className="checkbox" id="politicas" type="checkbox"/>
                   <label className="checkbox-label" for="politicas">Acepto <a>Política de Tratamiento de Datos.</a></label>
                 </div>
               </article>

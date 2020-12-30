@@ -12,7 +12,7 @@ import { Success } from './components/success'
 import './modal.css'
 
 const Modal = ({ toggle, onClick, option }) => {
-  const [nextModal, setNextModal] = useState(3)
+  const [nextModal, setNextModal] = useState(1)
 
   const handleClickModal = (e) => {
     e.preventDefault()
