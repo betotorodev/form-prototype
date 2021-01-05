@@ -13,10 +13,11 @@
 
 .Modal__container {
   position: relative;
-  bottom: -11%;
+  bottom: -8%;
   max-width: 628px;
+  max-height: 621px;
   width: 100%;
-  height: 68%;
+  height: 100%;
   padding: 1rem;
   background-color: #ffffff;
 }
